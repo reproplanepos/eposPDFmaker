@@ -41,11 +41,12 @@ var job = schedule.scheduleJob("*/5 * * * *", function (fireDate) {
         return console.log('Unable to scan directory: ' + err);
     }
     files.forEach(function(file) {
+      if (file != ".gitkeep") {
         console.log(file);
         var jsonfilepath = path.join(LSjsondirectoryPath, file);
         var filename = file.split(".");
         createPdf(jsonfilepath, LSpdfFormularPath, path.join(LSpdfDirectoryPath, filename[0] + '.pdf'));
-
+      }
     });
 });
 
