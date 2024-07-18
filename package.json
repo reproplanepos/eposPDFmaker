@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "canvas": "^2.11.2",
+    "express": "^4.19.2",
+    "html-pdf-node": "^1.0.8",
+    "jsbarcode": "^3.11.6",
+    "node-schedule": "^2.1.1",
+    "pdf-lib": "^1.17.1"
+  }
+}
