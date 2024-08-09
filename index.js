@@ -9,6 +9,10 @@ var JsBarcode = require("jsbarcode");
 var { Canvas } = require("canvas");
 var html_to_pdf = require("html-pdf-node");
 
+const dotenv = require('dotenv');
+dotenv.config();
+// console.log(`Your port is ${process.env.PORT}`); // 8626
+
 //joining path of directory
 var BThtmlDirectoryPath = path.join(
   __dirname,
@@ -43,7 +47,8 @@ var LSpdfFormularPath = path.join(__dirname, "lieferschein_formular.pdf");
 // │    └──────────────────── minute (0 - 59)
 // └───────────────────────── second (0 - 59, OPTIONAL)
 
-var job = schedule.scheduleJob("*/1 * * * *", function (fireDate) {
+let timerstring = "*/" + process.env.TimerMinutes + " * * * *"
+var job = schedule.scheduleJob(timerstring, function (fireDate) {
   console.log(
     "This job was supposed to run at " +
       fireDate +
@@ -229,4 +234,4 @@ app.get("/", function (req, res) {
   res.send("Bautagebuch PDF-Creator is UP!");
 });
 
-app.listen(3000);
+app.listen(process.env.PORT);
